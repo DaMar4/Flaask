@@ -1,0 +1,35 @@
+
+    {% extends 'layout/base.html' %}
+    
+    {% block container %}
+    
+        {% with mensajes = get_flashed_messages() %}
+            {% if mensajes %}
+                {% for mensaje in mensajes %}
+                <p>{{mensaje}}</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    
+    
+    {% for producto in productos.items %}
+        <a href="{{url_for('index.show_detail',id=producto['id_producto'])}}">{{producto['nombre']}}</a>
+        <a href="{{url_for('index.actualizar_producto',id=producto['id_producto'])}}">Editar producto</a>
+        <a href="{{url_for('index.eliminar_producto',id=producto['id_producto'])}}">Eliminar producto</a>
+        <br>
+        
+    {% endfor %}
+    <div class=pagination>
+        {%- for page in productos.iter_pages() %}
+          {% if page %}
+            {% if page != productos.page %}
+              <a href="{{url_for('index.show', page=page) }}">{{ page }}</a>
+            {% else %}
+              <strong>{{ page }}</strong>
+            {% endif %}
+          {% else %}
+            <span class=ellipsis>…</span>
+          {% endif %}
+        {%- endfor %}
+        </div>
+    {% endblock %}

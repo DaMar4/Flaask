@@ -1,0 +1,11 @@
+
+    {% extends 'layout/base.html' %}
+    
+    {% block container %}
+
+    <form action="{{url_for('index.registro')}}" method="post">
+        {% include '_form.html'%}
+        <input type="submit" value="Registrar">
+        <input type="reset" value="Borrar">
+    </form>
+    {% endblock %}

@@ -1,0 +1,16 @@
+
+    {% extends 'layout/base.html' %}
+    
+    {% block container %}
+
+    {% with mensajes = get_flashed_messages() %}
+        {% if mensajes %}
+            {% for mensaje in mensajes %}
+            <p>{{mensaje}}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
+        {{form.nombre.label}}{{form.nombre}}
+        {{form.precio.label}}{{form.precio}}
+    {% endblock %}
